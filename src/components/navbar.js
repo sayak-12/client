@@ -4,7 +4,7 @@ import "./navbar.css"
 
 export default function Navbar(){
     return(
-        <nav className="p-3 px-10 border flex items-center justify-between bg-pink-600 shadow-md shadow-pink-800">
+        <nav className="p-3 px-10 flex items-center justify-between bg-pink-600 shadow-md">
             <Logo />
             <div className="inter flex items-center list-none gap-6 nav-items">
                 <li>Home </li>
