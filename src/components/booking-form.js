@@ -20,8 +20,28 @@ const BookingForm = () => {
     const [isdateEnabled, setIsdateEnabled] = useState(true);
     const [discount, setDiscount] = useState(0);
     const [selectedDate, setSelectedDate] = useState(''); // Define selectedDate state
-    const notifySuccess = (message) => toast.success(message);
-    const notifyError = (message) => toast.error(message);
+    const notifySuccess = (message) => 
+        toast.success(message, {
+            className: 'cts',
+            autoClose: 5000,
+        });
+    const notifySuccessPerm = (message) => 
+        toast.success(message, {
+            className: 'scs',
+            autoClose: false,
+            position: "top-center",
+        });
+    
+    const notifyError = (message) => 
+        toast.error(message, {
+            className: 'cte',
+            autoClose: 5000,
+        });
+    const notifyErrorPerm = (message) => 
+        toast.error(message, {
+            className: 'sce',
+            autoClose: false,
+        });
     // Fetch booking status based on the selected date
     const fetchBookingStatus = async (selectedDate) => {
         try {
@@ -151,12 +171,12 @@ const BookingForm = () => {
                         const res = await axios.post('https://taaza-dandiya-backend.onrender.com/api/bookings', bookingData);
                         if (res.status === 201) {
                             // console.log(res);
-                            notifySuccess('Booking successful!')
-                            console.log(`Confirmed! Booking ID ${res.data.razorpayPaymentId}. You are entitled to ${res.data.tickets} tickets dated ${res.data.date} for Taaza Dandiya @Netaji Indoor Stadium subject to clearance of payment. T&C apply. Goto the Ticket counter at venue to redeem`)
+                            notifySuccessPerm(`Confirmed! Booking ID ${res.data.razorpayPaymentId}. You are entitled to ${res.data.tickets} tickets dated ${res.data.date} for Taaza Dandiya @Netaji Indoor Stadium subject to clearance of payment. T&C apply. Goto the Ticket counter at venue to redeem.`)
+                            // console.log(`Confirmed! Booking ID ${res.data.razorpayPaymentId}. You are entitled to ${res.data.tickets} tickets dated ${res.data.date} for Taaza Dandiya @Netaji Indoor Stadium subject to clearance of payment. T&C apply. Goto the Ticket counter at venue to redeem`)
                             setFormData(initialState);
                             setDiscount(0); // Reset discount after booking
                         } else {
-                            notifyError(`Error: ${res.data.message}`);
+                            notifyErrorPerm(`Error: ${res.data.message}`);
                         }
                     } catch (error) {
                         console.error('Error during booking:', error);

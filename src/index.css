@@ -33,6 +33,28 @@
   font-family: 'Poppins';
   @apply w-full p-3 text-center bg-pink-700 border-2 border-dashed mt-3 border-blue-500 text-white font-semibold text-lg hover:bg-pink-400;
 }
+.scs, .sce{
+  width: 100%;
+  max-width: 460px;
+  height: max-content;
+  text-align: center;
+}
+/* .cts{
+  scale: 1.2;
+} */
+.Toastify__toast-container.Toastify__toast-container--top-center{
+  top: 50%;
+  position: absolute;
+  transform: translateY(-50%) translateX(-50%);
+  width: max-content;
+}
+@media only screen and (max-width: 480px){
+  .Toastify__toast-container.Toastify__toast-container--top-center{
+    top: unset;
+    transform: translateX(0);
+    width: auto;
+}
+}
 .disabled{
   background-color: rgb(171, 171, 171) !important;
   color: rgba(0, 0, 0, 0.534) !important;
