@@ -1,9 +1,11 @@
 import React from 'react';
 import './about.css';
+import Navbar from './navbar';
 
 const Aboutpage = () => {
     return (
         <div className="container">
+            <Navbar/>
             <header>
                 <h1>Join Eastern India’s BIGGEST Dandiya Event!</h1>
             </header>
