@@ -261,9 +261,16 @@ const BookingForm = () => {
                         max="5"
                         required
                         onInput={(e) => {
-                            if (e.target.value > 5) {
-                                e.target.value = 5; // Prevent inputting more than 5
+                            let value = parseInt(e.target.value, 10);
+                    
+                            if (value > 5) {
+                                value = 5; // Prevent inputting more than 5
                             }
+                            if (value <= 0) {
+                                value = 5; // Set to 1 if 0 or negative value is entered
+                            }
+                    
+                            e.target.value = value; // Update the value in the input field
                         }}
                     />
                 </div>
