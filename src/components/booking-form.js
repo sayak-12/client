@@ -308,12 +308,12 @@ const BookingForm = () => {
             {/* Terms and conditions */}
             <p className='font-light font-xs leading-3'>1. You can book a minimum of 1 and a maximum of 5 tickets at a time.</p>
             <p className='font-light font-xs leading-3'>2. Tickets can be collected at the booking counter near the entry gate of Netaji Indoor Stadium.</p>
-            <p className='font-light font-xs leading-3'>3. Only paid tickets will be accepted for entry.</p>
-            <p className='font-light font-xs leading-3'>4. Severe action will be taken against misconduct or mischievous behavior.</p>
-            <p className='font-light font-xs leading-3'>5. Smoking and consumption of alcohol is strictly prohibited inside the venue.</p>
-            <p className='font-light font-xs leading-3'>6. Individuals under the influence of alcohol will not be allowed inside the venue.</p>
+            <p className='font-light font-xs leading-3'>3. Only 1 booking allowed per phone number </p>
+            <p className='font-light font-xs leading-3'>4. Only paid tickets will be accepted for entry.</p>
+            <p className='font-light font-xs leading-3'>5. Severe action will be taken against misconduct or mischievous behavior.</p>
+            <p className='font-light font-xs leading-3'>6. Smoking and consumption of alcohol is strictly prohibited inside the venue.</p>
             <p className='font-light font-xs leading-3'>7. Entry ticket is required for children above 3 years of age.</p>
-            <p className='font-light font-xs leading-3'>8. Severe action will be taken against misconduct or mischievous behavior.</p>
+            <p className='font-light font-xs leading-3'>8. Individuals under the influence of alcohol will not be allowed inside the venue.</p>
             <p className='font-light font-xs leading-3'>9. Outside eatables and water are not allowed.</p>
             <p className='font-light font-xs leading-3'>10. Scissors, knives, blades, or any other objectionable instruments are not allowed.</p>
             <p className='font-light font-xs leading-3'>11. Every individual must undergo security checks and frisking before entering.</p>
