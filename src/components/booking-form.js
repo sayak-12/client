@@ -186,8 +186,8 @@ const BookingForm = () => {
                     try {
                         const res = await axios.post('https://taaza-dandiya-backend.onrender.com/api/bookings', bookingData);
                         if (res.status === 201) {
-                            // console.log(res);
-                            notifySuccessPerm(`Confirmed! Booking ID ${res.data.razorpayPaymentId}. You are entitled to ${res.data.tickets} tickets dated ${res.data.date} for Taaza Dandiya @Netaji Indoor Stadium subject to clearance of payment. T&C apply. Goto the Ticket counter at venue to redeem.`)
+                            console.log(res);
+                            notifySuccessPerm(`Confirmed! Booking ID ${res.data.token}. You are entitled to ${res.data.tickets} tickets dated ${res.data.date} for Taaza Dandiya @Netaji Indoor Stadium subject to clearance of payment. T&C apply. Goto the Ticket counter at venue to redeem.`)
                             // console.log(`Confirmed! Booking ID ${res.data.razorpayPaymentId}. You are entitled to ${res.data.tickets} tickets dated ${res.data.date} for Taaza Dandiya @Netaji Indoor Stadium subject to clearance of payment. T&C apply. Goto the Ticket counter at venue to redeem`)
                             setFormData(initialState);
                             setDiscount(0); // Reset discount after booking
