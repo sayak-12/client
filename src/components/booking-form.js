@@ -316,7 +316,7 @@ const BookingForm = () => {
             </div>
 
             <div name='price' className='text-xl font-bold text-slate-800'>
-                Total Amount: {formData.tickets * TICKET_PRICE - (discount > 0 ? (formData.tickets * TICKET_PRICE * (discount / 100)) : 0)}
+            Total Amount: {formData.tickets * TICKET_PRICE - (discount > 0 ? (formData.tickets * TICKET_PRICE * (discount / 100)) : 0)}  {discount? (`(${discount} % Applied )`) : "" }
             </div>
             <button type="submit" disabled={loading}>
                 {loading ? 'Processing...' : 'Proceed To Pay'}
