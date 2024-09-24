@@ -250,7 +250,7 @@ const handleCaptchaChange = (e) => {
       const test_key = "rzp_live_Qm0FjnvHxpYDho";
       const options = {
         key: `${test_key}`,
-        amount: `100`,
+        amount: `${finalAmount * 100}`,
         currency: "INR",
         name: "Taaza Dandiya 2024",
         description: "Ticket Booking Payment",
