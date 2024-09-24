@@ -19,6 +19,7 @@ const BookingForm = () => {
     const [loading, setLoading] = useState(false);
     const [isdateEnabled, setIsdateEnabled] = useState(true);
     const [discount, setDiscount] = useState(0);
+    const [emailError, setemailError] = useState('');
     const [selectedDate, setSelectedDate] = useState(''); // Define selectedDate state
     const notifySuccess = (message) => 
         toast.success(message, {
@@ -63,6 +64,9 @@ const BookingForm = () => {
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
+        if (name === 'email') {
+            validateEmail(value);
+        }
     };
 
     const handleDateSelect = (dateString) => {
@@ -105,7 +109,15 @@ const BookingForm = () => {
             notifyError('Please enter a discount code.');
         }
     };
-
+    const validateEmail = (email) => {
+        // Simple email validation regex
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailPattern.test(email)) {
+            setemailError('Please enter a valid email address');
+        } else {
+            setemailError(''); // Clear the error if email is valid
+        }
+    };
     const handleSubmit = async (e) => {
         e.preventDefault();
     
@@ -126,6 +138,10 @@ const BookingForm = () => {
         // Validate required fields
         if (!formData.name || !formData.email || !formData.phone || !formData.date || !formData.tickets) {
             notifyError('Please fill all required fields.');
+            return;
+        }
+        if (formData.tickets<1 || formData.tickets>5) {
+            notifyError('Minimum 1 and Maximum 5 tickets can be purchased from one number.');
             return;
         }
     
@@ -214,17 +230,17 @@ const BookingForm = () => {
         <form onSubmit={handleSubmit} className='inter booking-form flex flex-col gap-3 shadow-xl border-2 border-slate-300 bg-white p-6'>
             <div className='my-3'>
                 <div className="date-selection">
-                    <div className="date-box" onClick={() => handleDateSelect('10-10-2024')}>
+                    <div className={`date-box ${selectedDate === '10-10-2024' ? 'active':''}`} onClick={() => handleDateSelect('10-10-2024')}>
                         <span className="month">OCT</span>
                         <span className="date">10</span>
                         <span className="day">Thu</span>
                     </div>
-                    <div className="date-box" onClick={() => handleDateSelect('11-10-2024')}>
+                    <div className={`date-box ${selectedDate === '11-10-2024' ? 'active':''}`} onClick={() => handleDateSelect('11-10-2024')}>
                         <span className="month">OCT</span>
                         <span className="date">11</span>
                         <span className="day">Fri</span>
                     </div>
-                    <div className="date-box" onClick={() => handleDateSelect('12-10-2024')}>
+                    <div className={`date-box ${selectedDate === '12-10-2024' ? 'active':''}`} onClick={() => handleDateSelect('12-10-2024')}>
                         <span className="month">OCT</span>
                         <span className="date">12</span>
                         <span className="day">Sat</span>
@@ -280,18 +296,19 @@ const BookingForm = () => {
                 />
             </div>
             <div>
-                <label>Email Id: <span style={{ color: 'red' }}>*</span></label>
-                <input
-                    type="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                    onInput={(e) => {
-                        e.target.value = e.target.value.toLowerCase(); // Converts all characters to lowercase
-                    }}
-                />
-            </div>
+            <label>Email Id: <span style={{ color: 'red' }}>*</span></label>
+            <input
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                required
+                onInput={(e) => {
+                    e.target.value = e.target.value.toLowerCase(); // Converts all characters to lowercase
+                }}
+            />
+            {emailError!=='' && <p style={{ color: 'red', fontSize: '12px' }}>{emailError}</p>} {/* Error message */}
+        </div>
 
             <div className='flex'>
                 <div className='content-center mx-2'><input type="checkbox" required /></div>
