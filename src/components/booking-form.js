@@ -21,6 +21,34 @@ const BookingForm = () => {
   const [discount, setDiscount] = useState(0);
   const [emailError, setemailError] = useState("");
   const [selectedDate, setSelectedDate] = useState(""); // Define selectedDate state
+// Captcha state
+const [captchaNum1, setCaptchaNum1] = useState(0);
+const [captchaNum2, setCaptchaNum2] = useState(0);
+const [captchaAnswer, setCaptchaAnswer] = useState('');
+const [captchaCorrect, setCaptchaCorrect] = useState(false);
+
+// Randomly generate captcha numbers
+useEffect(() => {
+  generateCaptcha();
+}, []);
+
+const generateCaptcha = () => {
+  const num1 = Math.floor(Math.random() * 10) + 1;
+  const num2 = Math.floor(Math.random() * 10) + 1;
+  setCaptchaNum1(num1);
+  setCaptchaNum2(num2);
+};
+
+const handleCaptchaChange = (e) => {
+  const value = e.target.value;
+  setCaptchaAnswer(value);
+  if (parseInt(value) === captchaNum1 + captchaNum2) {
+    setCaptchaCorrect(true);
+  } else {
+    setCaptchaCorrect(false);
+  }
+};
+
   const notifySuccess = (message) => {
     toast.success(message, 
       {
@@ -440,6 +468,18 @@ const BookingForm = () => {
             ? formData.tickets * TICKET_PRICE * (discount / 100)
             : 0)}{" "}
         {discount ? `(${discount} % Discount Applied )` : ""}
+      </div>
+      <div>
+        <label>Solve the captcha: {captchaNum1} + {captchaNum2} = ?</label>
+        <input
+          type="number"
+          value={captchaAnswer}
+          onChange={handleCaptchaChange}
+          required
+        />
+        {!captchaCorrect && captchaAnswer && (
+          <p style={{ color: 'red', fontSize: '12px' }}>Captcha is incorrect.</p>
+        )}
       </div>
       <button type="submit" disabled={loading}>
         {loading ? "Processing..." : "Proceed To Pay"}
