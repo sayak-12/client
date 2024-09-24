@@ -72,6 +72,9 @@ p.font-light.font-xs.leading-3{
   .date-selection .date-box{
     width: 100%;
   }
+  .date-selection .date-box.active{
+    width: 100%;
+  }
   .new{
     flex-direction: column;
     padding-top: 0 !important;
