@@ -247,7 +247,7 @@ const handleCaptchaChange = (e) => {
         ...formData,
         totalAmount: finalAmount,
       };
-      const test_key = "REACT_APP_LIVE_KEY = rzp_live_Qm0FjnvHxpYDho";
+      const test_key = "rzp_live_Qm0FjnvHxpYDho";
       const options = {
         key: `${test_key}`,
         amount: `100`,
