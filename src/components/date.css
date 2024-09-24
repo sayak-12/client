@@ -82,3 +82,7 @@
     font-weight: 700;
     width: 280px;
 }
+
+.ticket-count{
+    border: 1px solid black;
+}

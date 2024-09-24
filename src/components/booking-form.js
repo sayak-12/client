@@ -348,33 +348,35 @@ const handleCaptchaChange = (e) => {
         </div>
       </div>
 
-      <div className="flex gap-3 new">
-        <div className="flex-1">
-          <label>
-            No. of Tickets <span style={{ color: "red" }}>*</span>
-          </label>
-          <input
-            type="number"
-            name="tickets"
-            value={formData.tickets}
-            onChange={handleChange}
-            min="1"
-            max="5"
-            required
-            onInput={(e) => {
-              let value = parseInt(e.target.value, 10);
-
-              if (value > 5) {
-                value = 5; // Prevent inputting more than 5
-              }
-              if (value <= 0) {
-                value = 5; // Set to 1 if 0 or negative value is entered
-              }
-
-              e.target.value = value; // Update the value in the input field
-            }}
-          />
-        </div>
+     
+      <div div className='flex gap-3'>
+            <div className='flex-1'>
+    <label>No. of Tickets <span style={{ color: 'red' }}>*</span></label>
+    <select
+        name="tickets"
+        className="ticket-count"
+        value={formData.tickets}
+        onChange={handleChange}
+        required
+        style={{
+            width: '100%',
+            height:'60%',
+            padding: '8px',
+            border: '2px solid black',
+            backgroundColor: '#FFFFFF',
+            fontSize: '16px',
+            cursor: 'pointer'
+        }}
+    >
+        <option value="">Select</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+    </select>
+</div>
+      
         <div className="flex-1">
           <label>Coupon Code</label>
           <input
