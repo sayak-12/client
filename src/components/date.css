@@ -4,8 +4,10 @@
     justify-content: center;
     margin-bottom: 20px;
 }
-
-.date-box.active {
+.customAlert{
+    max-width: 450px;
+}
+.date-box.active, .redirectbutton {
     background-color: #f00040;
     border: 2px solid #ddd;
     border-radius: 10px;
@@ -15,6 +17,14 @@
     width: 110px;
     cursor: pointer;
     transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+.redirectbutton{
+    width: max-content;
+    margin: 10px auto;
+    display: flex;
+}
+.Toastify__toast-theme--light {
+    box-shadow: 0 0 500px black;
 }
 .date-box{
     border: 2px solid #f00040;
