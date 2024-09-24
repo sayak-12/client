@@ -261,9 +261,16 @@ const BookingForm = () => {
                         max="5"
                         required
                         onInput={(e) => {
-                            if (e.target.value > 5) {
-                                e.target.value = 5; // Prevent inputting more than 5
+                            let value = parseInt(e.target.value, 10);
+                    
+                            if (value > 5) {
+                                value = 5; // Prevent inputting more than 5
                             }
+                            if (value <= 0) {
+                                value = 5; // Set to 1 if 0 or negative value is entered
+                            }
+                    
+                            e.target.value = value; // Update the value in the input field
                         }}
                     />
                 </div>
@@ -316,7 +323,7 @@ const BookingForm = () => {
             </div>
 
             <div name='price' className='text-xl font-bold text-slate-800'>
-                Total Amount: {formData.tickets * TICKET_PRICE - (discount > 0 ? (formData.tickets * TICKET_PRICE * (discount / 100)) : 0)}
+            Total Amount: {formData.tickets * TICKET_PRICE - (discount > 0 ? (formData.tickets * TICKET_PRICE * (discount / 100)) : 0)}  {discount? (`(${discount} % Discount Applied )`) : "" }
             </div>
             <button type="submit" disabled={loading}>
                 {loading ? 'Processing...' : 'Proceed To Pay'}

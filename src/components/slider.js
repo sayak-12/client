@@ -31,7 +31,7 @@ const Crousel = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       nextSlide();
-    }, 6000); // 6000ms = 6s
+    }, 3000); // 3000ms = 3s
 
     // Clean up the interval on component unmount
     return () => clearInterval(interval);
