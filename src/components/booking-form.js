@@ -356,7 +356,7 @@ const handleCaptchaChange = (e) => {
       </div>
 
      
-      <div div className='flex gap-3'>
+      <div div className='flex gap-3 resp'>
             <div className='flex-1'>
     <label>No. of Tickets <span style={{ color: 'red' }}>*</span></label>
     <select
