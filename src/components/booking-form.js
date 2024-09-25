@@ -122,25 +122,24 @@ const handleCaptchaChange = (e) => {
   };
 
   const handleDateSelect = (dateString) => {
-    const date = new Date(dateString);
-
-    const formattedDate = [
+    const parts = dateString.split('-');
+    const formattedDate = `${parts[2]}-${parts[1]}-${parts[0]}`; // Convert to 'YYYY-MM-DD'
+  const date = new Date(formattedDate);
+    const outputFormattedDate  = [
       date.getFullYear(),
 
       String(date.getDate()).padStart(2, "0"),
       String(date.getMonth() + 1).padStart(2, "0"),
     ].join("-");
 
-    setFormData({ ...formData, date: formattedDate });
-    setSelectedDate(dateString);
+    setFormData({ ...formData, date: outputFormattedDate  });
+    setSelectedDate(formattedDate);
   };
   const verifyDiscountCode = async () => {
     if (formData.discountCode && formData.date) {
       try {
-        // Convert the date to YYYY-MM-DD format to ensure consistency across platforms
-        const formattedDate = new Date(formData.date).toISOString().split('T')[0];
         
-        console.log({ code: formData.discountCode, date: formattedDate });
+        console.log({ code: formData.discountCode, date: formData.date });
   
         const response = await fetch(
           "https://taaza-dandiya-backend.onrender.com/api/admin/verify-coupon",
@@ -149,7 +148,7 @@ const handleCaptchaChange = (e) => {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
               code: formData.discountCode,
-              date: formattedDate, // Send the formatted date
+              date: formData.date, // Send the formatted date
             }),
           }
         );
