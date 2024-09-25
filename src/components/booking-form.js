@@ -133,7 +133,7 @@ const handleCaptchaChange = (e) => {
     ].join("-");
 
     setFormData({ ...formData, date: outputFormattedDate  });
-    setSelectedDate(formattedDate);
+    setSelectedDate(dateString);
   };
   const verifyDiscountCode = async () => {
     if (formData.discountCode && formData.date) {
