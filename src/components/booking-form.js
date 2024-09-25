@@ -138,9 +138,13 @@ const handleCaptchaChange = (e) => {
     setSelectedDate(dateString);
   };
   const verifyDiscountCode = async () => {
-    if (formData.discountCode) {
+    if (formData.discountCode && formData.date) {
       try {
-        console.log({ code: formData.discountCode, date: formData.date });
+        // Convert the date to YYYY-MM-DD format to ensure consistency across platforms
+        const formattedDate = new Date(formData.date).toISOString().split('T')[0];
+        
+        console.log({ code: formData.discountCode, date: formattedDate });
+  
         const response = await fetch(
           "https://taaza-dandiya-backend.onrender.com/api/admin/verify-coupon",
           {
@@ -148,11 +152,11 @@ const handleCaptchaChange = (e) => {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
               code: formData.discountCode,
-              date: formData.date,
+              date: formattedDate, // Send the formatted date
             }),
           }
         );
-
+  
         if (!response.ok) {
           const result = await response.json();
           notifyError(`Coupon error: ${result.message}`);
@@ -167,9 +171,10 @@ const handleCaptchaChange = (e) => {
         notifyError("Failed to verify coupon, please try again.");
       }
     } else {
-      notifyError("Please enter a discount code.");
+      notifyError("Please enter a discount code and select a valid date.");
     }
   };
+  
   const validateEmail = (email) => {
     // Simple email validation regex
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
