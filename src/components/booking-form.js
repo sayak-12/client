@@ -192,11 +192,10 @@ const handleCaptchaChange = (e) => {
       return;
     }
 
-    if (!captchaCorrect) {
-      alert("Please solve the CAPTCHA correctly.");
-      return; // Stop form submission if CAPTCHA is incorrect
-    }
-
+    // if (!captchaCorrect) {
+    //   notifyError("Please solve the CAPTCHA correctly.");
+    //   return; // Stop form submission if CAPTCHA is incorrect
+    // }
 
      if (!isdateEnabled) {
         notifyError('Booking is currently disabled for the selected date.');
@@ -494,7 +493,7 @@ const handleCaptchaChange = (e) => {
         )}
       </div>
 
-      <button type="submit" disabled={loading}>
+      <button type="submit" disabled={captchaCorrect && loading}>
         {loading ? "Processing..." : "Proceed To Pay"}
       </button>
 
