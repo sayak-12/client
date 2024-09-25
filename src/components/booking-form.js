@@ -221,7 +221,26 @@ const handleCaptchaChange = (e) => {
     }
 
     setLoading(true);
-
+    if (formData.discountCode !== "") {
+      try {
+        const discountCheckRes = await axios.get(
+          `https://taaza-dandiya-backend.onrender.com/api/bookings/check-coupon/${formData.discountCode}/${formData.date}`
+        );
+    
+        if (discountCheckRes.status === 200) {
+          const { discount } = discountCheckRes.data;
+          setDiscount(discount); // Apply the discount if valid
+        } else {
+          notifyError("Invalid discount code or coupon is exhausted.");
+          return; // Stop further processing if the coupon is invalid
+        }
+      } catch (error) {
+        notifyError("Failed to verify the discount code.");
+        setLoading(false);
+        return;
+      }
+    }
+    
     try {
       // Check if phone number exists
       const phoneCheckRes = await axios.get(
@@ -493,7 +512,7 @@ const handleCaptchaChange = (e) => {
         )}
       </div>
 
-      <button type="submit" disabled={captchaCorrect && loading}>
+      <button type="submit" disabled={!captchaCorrect || loading}>
         {loading ? "Processing..." : "Proceed To Pay"}
       </button>
 
