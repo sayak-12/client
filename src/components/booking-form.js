@@ -198,7 +198,7 @@ const handleCaptchaChange = (e) => {
     // }
 
      if (!isdateEnabled) {
-        notifyError('Booking is currently disabled for the selected date.');
+        notifyError('Booking is currently closed for the selected date.');
         return;
    }
 
