@@ -191,10 +191,10 @@ const handleCaptchaChange = (e) => {
       return;
     }
 
-    // if (!isdateEnabled) {
-    //     notifyError('Booking is currently disabled for the selected date.');
-    //     return;
-    // }
+     if (!isdateEnabled) {
+         notifyError('Booking is currently disabled for the selected date.');
+         return;
+     }
 
     // Validate required fields
     if (
@@ -247,9 +247,9 @@ const handleCaptchaChange = (e) => {
         ...formData,
         totalAmount: finalAmount,
       };
-      const test_key = "rzp_live_Qm0FjnvHxpYDho";
+      const test_key = "rzp_test_xt8VxLPKxqhMHy";
       const options = {
-        key: `${live_key}`,
+        key: `${test_key}`,
         amount: `${finalAmount * 100}`,
         currency: "INR",
         name: "Taaza Dandiya 2024",
