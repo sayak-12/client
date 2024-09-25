@@ -249,7 +249,7 @@ const handleCaptchaChange = (e) => {
       };
       const test_key = "rzp_live_Qm0FjnvHxpYDho";
       const options = {
-        key: `${live_key}`,
+        key: `${test_key}`,
         amount: `${finalAmount * 100}`,
         currency: "INR",
         name: "Taaza Dandiya 2024",
