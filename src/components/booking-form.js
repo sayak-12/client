@@ -196,10 +196,10 @@ const handleCaptchaChange = (e) => {
       return;
     }
 
-     //if (!isdateEnabled) {
-       //  notifyError('Booking is currently disabled for the selected date.');
-      //   return;
-    // }
+     if (!isdateEnabled) {
+        notifyError('Booking is currently disabled for the selected date.');
+        return;
+   }
 
     // Validate required fields
     if (
