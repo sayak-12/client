@@ -40,14 +40,11 @@ const generateCaptcha = () => {
 };
 
 const handleCaptchaChange = (e) => {
-  const value = e.target.value;
-  setCaptchaAnswer(value);
-  if (parseInt(value) === captchaNum1 + captchaNum2) {
-    setCaptchaCorrect(true);
-  } else {
-    setCaptchaCorrect(false);
-  }
+  setCaptchaAnswer(e.target.value);
+  const isCorrect = parseInt(e.target.value, 10) === captchaNum1 + captchaNum2;
+  setCaptchaCorrect(isCorrect); // Set to true if correct, false otherwise
 };
+
 
   const notifySuccess = (message) => {
     toast.success(message, 
@@ -195,6 +192,12 @@ const handleCaptchaChange = (e) => {
       notifyError("The selected event date has already passed.");
       return;
     }
+
+    if (!captchaCorrect) {
+      alert("Please solve the CAPTCHA correctly.");
+      return; // Stop form submission if CAPTCHA is incorrect
+    }
+
 
      if (!isdateEnabled) {
         notifyError('Booking is currently disabled for the selected date.');
@@ -491,6 +494,7 @@ const handleCaptchaChange = (e) => {
           <p style={{ color: 'red', fontSize: '12px' }}>Captcha is incorrect.</p>
         )}
       </div>
+
       <button type="submit" disabled={loading}>
         {loading ? "Processing..." : "Proceed To Pay"}
       </button>
