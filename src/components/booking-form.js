@@ -392,6 +392,9 @@ const handleCaptchaChange = (e) => {
             disabled={
               formData.date && selectedDate && formData.tickets ? false : true
             }
+            onInput={(e) => {
+            e.target.value = e.target.value.toUpperCase(); // Converts all characters to Uppercase
+          }}
             title={
               formData.date && selectedDate && formData.tickets
                 ? "Enter Coupon Code"
