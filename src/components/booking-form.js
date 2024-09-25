@@ -124,14 +124,14 @@ const handleCaptchaChange = (e) => {
   const handleDateSelect = (dateString) => {
     const parts = dateString.split('-');
     const formattedDate = `${parts[2]}-${parts[1]}-${parts[0]}`; // Convert to 'YYYY-MM-DD'
-  const date = new Date(formattedDate);
+    const date = new Date(formattedDate);
+    
     const outputFormattedDate  = [
       date.getFullYear(),
-
-      String(date.getDate()).padStart(2, "0"),
       String(date.getMonth() + 1).padStart(2, "0"),
+      String(date.getDate()).padStart(2, "0"),
     ].join("-");
-
+    console.log(outputFormattedDate);
     setFormData({ ...formData, date: outputFormattedDate  });
     setSelectedDate(dateString);
   };
