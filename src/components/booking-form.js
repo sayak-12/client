@@ -247,9 +247,9 @@ const handleCaptchaChange = (e) => {
         ...formData,
         totalAmount: finalAmount,
       };
-      const test_key = " rzp_live_Qm0FjnvHxpYDho";
+      const test_key = "rzp_live_Qm0FjnvHxpYDho";
       const options = {
-        key: `${test_key}`,
+        key: `${live_key}`,
         amount: `${finalAmount * 100}`,
         currency: "INR",
         name: "Taaza Dandiya 2024",
