@@ -62,7 +62,7 @@ const handleCaptchaChange = (e) => {
         <>
         <div className="customAlert">
           <p>
-            Confirmed! Booking ID {res.data.token}. You are entitled to 
+            Confirmed! Booking ID {res.data.token}. You are entitled to  
             {res.data.tickets} tickets dated {res.data.date} for Taaza Dandiya
             @Netaji Indoor Stadium subject to clearance of payment. T&C apply.
           </p>
@@ -191,10 +191,10 @@ const handleCaptchaChange = (e) => {
       return;
     }
 
-     if (!isdateEnabled) {
-         notifyError('Booking is currently disabled for the selected date.');
-         return;
-     }
+     //if (!isdateEnabled) {
+       //  notifyError('Booking is currently disabled for the selected date.');
+      //   return;
+    // }
 
     // Validate required fields
     if (
