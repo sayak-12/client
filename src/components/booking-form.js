@@ -283,7 +283,7 @@ const handleCaptchaChange = (e) => {
       );
       const { orderId } = orderRes.data;
 
-      const test_key = "rzp_test_xt8VxLPKxqhMHy";
+      const test_key = "rzp_live_Qm0FjnvHxpYDho";
       const options = {
         key: `${test_key}`,
         amount: `${finalAmount * 100}`,
