@@ -272,7 +272,18 @@ const handleCaptchaChange = (e) => {
         ...formData,
         totalAmount: finalAmount,
       };
-      const test_key = "rzp_live_Qm0FjnvHxpYDho";
+
+      const orderRes = await axios.post(
+        'https://taaza-dandiya-backend.onrender.com/api/bookings/create-order',
+        {
+            amount: finalAmount, // Amount in INR or the required currency
+            currency: "INR", // Set currency, e.g., INR
+            receipt: `receipt_${Date.now()}` // Unique receipt ID
+        }
+      );
+      const { orderId } = orderRes.data;
+
+      const test_key = "rzp_test_xt8VxLPKxqhMHy";
       const options = {
         key: `${test_key}`,
         amount: `${finalAmount * 100}`,
@@ -280,8 +291,10 @@ const handleCaptchaChange = (e) => {
         name: "Taaza Dandiya 2024",
         description: "Ticket Booking Payment",
         image: "https://taazatv.com/image/logo.webp",
+        order_id: `${orderId}`,
         handler: async (response) => {
           bookingData.razorpayPaymentId = response.razorpay_payment_id;
+          bookingData.razorpayOrderId = response.razorpay_order_id;
           try {
             const res = await axios.post(
               "https://taaza-dandiya-backend.onrender.com/api/bookings",
