@@ -3,6 +3,7 @@ import "./date.css";
 import axios from "axios";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import backend_url from "../config.js";
 const BookingForm = () => {
   const TICKET_PRICE = 700;
   const initialState = {
@@ -97,7 +98,7 @@ const handleCaptchaChange = (e) => {
   const fetchBookingStatus = async (selectedDate) => {
     try {
       const response = await fetch(
-        `https://taaza-dandiya-backend.onrender.com/api/admin/booking-status/${selectedDate}`
+        `${backend_url}/api/admin/booking-status/${selectedDate}`
       );
       const data = await response.json();
       setIsdateEnabled(data.bookingEnabled);
@@ -142,7 +143,7 @@ const handleCaptchaChange = (e) => {
         console.log({ code: formData.discountCode, date: formData.date });
   
         const response = await fetch(
-          "https://taaza-dandiya-backend.onrender.com/api/admin/verify-coupon",
+          `${backend_url}/api/admin/verify-coupon`,
           {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -224,7 +225,7 @@ const handleCaptchaChange = (e) => {
     if (formData.discountCode !== "") {
       try {
         const discountCheckRes = await axios.get(
-          `https://taaza-dandiya-backend.onrender.com/api/bookings/check-coupon/${formData.discountCode}/${formData.date}`
+          `${backend_url}/api/bookings/check-coupon/${formData.discountCode}/${formData.date}`
         );
     
         if (discountCheckRes.status === 200) {
@@ -244,7 +245,7 @@ const handleCaptchaChange = (e) => {
     try {
       // Check if phone number exists
       const phoneCheckRes = await axios.get(
-        `https://taaza-dandiya-backend.onrender.com/api/bookings/check-phone/${formData.phone}`
+        `${backend_url}/api/bookings/check-phone/${formData.phone}`
       );
       if (phoneCheckRes.status === 400) {
         notifyError("A booking with this phone number already exists.");
@@ -254,7 +255,7 @@ const handleCaptchaChange = (e) => {
 
       // Check if booking limit is reached
       const limitCheckRes = await axios.get(
-        `https://taaza-dandiya-backend.onrender.com/api/bookings/check-limit/${formData.date}/${formData.tickets}`
+        `${backend_url}/api/bookings/check-limit/${formData.date}/${formData.tickets}`
       );
       if (limitCheckRes.status === 400) {
         notifyError("Booking limit reached! No more available spots.");
@@ -274,7 +275,7 @@ const handleCaptchaChange = (e) => {
       };
 
       const orderRes = await axios.post(
-        'https://taaza-dandiya-backend.onrender.com/api/bookings/create-order',
+        `${backend_url}/api/bookings/create-order`,
         {
             amount: finalAmount, // Amount in INR or the required currency
             currency: "INR", // Set currency, e.g., INR
@@ -297,7 +298,7 @@ const handleCaptchaChange = (e) => {
           bookingData.razorpayOrderId = response.razorpay_order_id;
           try {
             const res = await axios.post(
-              "https://taaza-dandiya-backend.onrender.com/api/bookings",
+              `${backend_url}/api/bookings`,
               bookingData
             );
             if (res.status === 201) {

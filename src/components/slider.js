@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './slider.css';
-
+import backend_url from '../config.js';
 const Crousel = () => {
   const [uploadedImages, setUploadedImages] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -10,7 +10,7 @@ const Crousel = () => {
   useEffect(() => {
     const fetchImages = async () => {
       try {
-        const res = await axios.get('https://taaza-dandiya-backend.onrender.com/api/admin/images');
+        const res = await axios.get(`${backend_url}/api/admin/images`);
         setUploadedImages(res.data);
       } catch (error) {
         console.error('Error fetching images:', error);
@@ -42,7 +42,7 @@ const Crousel = () => {
       <div className="carousel-container">
         {uploadedImages.length > 0 ? (
           <img
-            src={`https://taaza-dandiya-backend.onrender.com${uploadedImages[currentIndex].url}`}
+            src={`${backend_url}${uploadedImages[currentIndex].url}`}
             alt="carousel slide"
             className="carousel-image"
           />
