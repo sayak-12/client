@@ -198,7 +198,7 @@ const handleCaptchaChange = (e) => {
     // }
 
      if (!isdateEnabled) {
-        notifyError('Booking is currently closed for the selected date.');
+        notifyError('Booking is currently disabled for the selected date.');
         return;
    }
 
@@ -275,7 +275,7 @@ const handleCaptchaChange = (e) => {
       const test_key = "rzp_live_Qm0FjnvHxpYDho";
       const options = {
         key: `${test_key}`,
-        amount: `100`,
+        amount: `${finalAmount * 100}`,
         currency: "INR",
         name: "Taaza Dandiya 2024",
         description: "Ticket Booking Payment",
