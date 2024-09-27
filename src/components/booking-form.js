@@ -515,7 +515,7 @@ const handleCaptchaChange = (e) => {
         {discount ? `(${discount} % Discount Applied )` : ""}
       </div>
       <div>
-        <label>Solve the captcha: {captchaNum1} + {captchaNum2} = ?</label>
+        <label>Solve the captcha: {captchaNum1} + {captchaNum2} = ?</label><span style={{ color: "red" }}>*</span>
         <input
           type="number"
           value={captchaAnswer}
